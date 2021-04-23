@@ -47,6 +47,7 @@ MonoBehaviour:
   impactEffect: {fileID: 1115995757177453444, guid: fd15d54e2e715334d81b7b82b9edfcbe,
     type: 3}
   speed: 30
+  damage: 100
   explosionRadius: 8
 --- !u!1 &4863588592521901631
 GameObject:
