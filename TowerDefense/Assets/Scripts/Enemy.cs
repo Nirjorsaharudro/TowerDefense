@@ -16,16 +16,23 @@ public class Enemy : MonoBehaviour
 
    [Header("Unity Stuff")]
    public Image healthBar;
+   private Color healthBarColor;
    
    void Start(){
        speed = startSpeed;
        health = startHealth;
+       healthBarColor = healthBar.color;
+       healthBar.color = healthBarColor;
    }
    
    public void TakeDamage(float amount){
        health -= amount;
 
        healthBar.fillAmount = health / startHealth;
+
+       if(health <= 50){
+           healthBar.color = new Color(255f, 0f, 0f, 255f);
+       }
 
        if(health <= 0){
            Die();
@@ -41,6 +48,8 @@ public class Enemy : MonoBehaviour
 
        GameObject effect =(GameObject) Instantiate(deathEffect,transform.position,Quaternion.identity);
        Destroy(effect,5f);
+
+       WaveSpawner.EnemiesAlive--;
        
        Destroy(gameObject);
    }
