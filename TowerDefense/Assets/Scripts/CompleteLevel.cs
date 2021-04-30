@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class CompleteLevel : MonoBehaviour
 {
-    public string menuSceneName = "MainMenu";
+    public int menuSceneName = 0;
 
-    public string nextLevel = "Level02";
+    public int nextLevel = 3;
     public int levelToUnlock = 2;
 
     public SceneFader sceneFader;
 
     public void Continue(){
-        if(levelToUnlock > PlayerPrefs.GetInt("levelReached", 1)){
+        if(levelToUnlock > PlayerPrefs.GetInt("levelReached")){
            PlayerPrefs.SetInt("levelReached", levelToUnlock);
         }
         
         sceneFader.FadeTo(nextLevel);
+        nextLevel++;
+        levelToUnlock++;
     }
 
     public void Menu(){
-        sceneFader.FadeTo(menuSceneName);
+        sceneFader.FadeTo(0);
     }
 
+    public void Back(){
+        sceneFader.FadeTo(1);
+    }
    
 }

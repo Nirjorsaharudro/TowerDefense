@@ -17,7 +17,7 @@ public class LevelSelector : MonoBehaviour
        }
    }
 
-   public void Select(string levelName){
+   public void Select(int levelName){
        fader.FadeTo(levelName);
    }
 }

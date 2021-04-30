@@ -6,7 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject ui;
 
-    public string menuSceneName = "MainMenu";
+    public int menuSceneName = 0;
     public SceneFader sceneFader;
     void Update()
     {
@@ -18,6 +18,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Toggle(){
+        if(GameManager.GameIsOver)
+            return;
         ui.SetActive( !ui.activeSelf );
 
         if(ui.activeSelf){
@@ -29,11 +31,12 @@ public class PauseMenu : MonoBehaviour
 
     public void Retry(){
         Toggle();
-        sceneFader.FadeTo(SceneManager.GetActiveScene().name);
+        sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
+        WaveSpawner.EnemiesAlive = 0;
     }
 
     public void Menu(){
         Toggle();
-        sceneFader.FadeTo(menuSceneName);
+        sceneFader.FadeTo(0);
     }
 }
